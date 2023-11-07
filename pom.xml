@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>Spring_Security_Tutorial</artifactId>
+    <artifactId>Habr_Parser_Project</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Spring Security Tutorial</name>
     <description>Spring Security Tutorial</description>
