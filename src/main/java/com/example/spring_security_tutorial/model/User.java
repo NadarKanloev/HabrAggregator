@@ -1,9 +1,16 @@
 package com.example.spring_security_tutorial.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
+@Data
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,18 +18,6 @@ public class User {
 
     @Column(name = "email")
     private String email;
-
-    public void setId(long id){
-        this.id = id;
-    }
-
-    public String getEmail(){
-        return email;
-    }
-
-    public void setEmail(String email){
-        this.email = email;
-    }
 
     @Column(name = "name")
     private String name;
@@ -33,35 +28,13 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    public long getId(){
-        return id;
-    }
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_to_roles",
+            joinColumns = @JoinColumn(name="user_id"),
+            inverseJoinColumns = @JoinColumn(name="role_id"))
+    private Set<Role> roles = new HashSet<>();
 
-    public void setId(int id){
-        this.id = id;
-    }
-
-    public String getname(){
-        return name;
-    }
-
-    public void setName(String name){
-        this.name = name;
-    }
-
-    public int getYear_of_birth(){
-        return year_of_birth;
-    }
-
-    public void setYear_of_birth(int year_of_birth){
-        this.year_of_birth = year_of_birth;
-    }
-
-    public String getPassword(){
-        return password;
-    }
-
-    public void setPassword(String password){
-        this.password = password;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

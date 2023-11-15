@@ -3,12 +3,13 @@ package com.example.spring_security_tutorial.controller;
 import com.example.spring_security_tutorial.dto.JwtResponse;
 import com.example.spring_security_tutorial.dto.SignInRequest;
 import com.example.spring_security_tutorial.dto.SignUpRequest;
+import com.example.spring_security_tutorial.model.ERole;
+import com.example.spring_security_tutorial.model.Role;
 import com.example.spring_security_tutorial.model.User;
+import com.example.spring_security_tutorial.repository.RoleRepository;
 import com.example.spring_security_tutorial.repository.UserRepository;
 import com.example.spring_security_tutorial.security.JWTCore;
 import com.example.spring_security_tutorial.security.UserDetailsImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,19 +22,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import static com.example.spring_security_tutorial.model.ERole.ROLE_USER;
+
 @RestController
 @RequestMapping("/auth")
 public class SecurityController {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
+    private RoleRepository roleRepository;
     private AuthenticationManager authenticationManager;
     private JWTCore jwtCore;
     public SecurityController(UserRepository userRepository,
                           PasswordEncoder passwordEncoder,
                           AuthenticationManager authenticationManager,
-                          JWTCore jwtCore) {
+                          JWTCore jwtCore, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.roleRepository = roleRepository;
         this.authenticationManager = authenticationManager;
         this.jwtCore = jwtCore;
     }
@@ -43,10 +54,14 @@ public class SecurityController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtCore.generateToken(authentication);
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        List<String> roles = userDetails.getAuthorities().stream()
+                .map(item -> item.getAuthority())
+                .collect(Collectors.toList());
         JwtResponse res = new JwtResponse();
         res.setToken(jwt);
         res.setId(userDetails.getId());
         res.setUsername(userDetails.getUsername());
+        res.setRoles(roles);
         return ResponseEntity.ok(jwt);
     }
 
@@ -62,10 +77,17 @@ public class SecurityController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("email is already taken");
         }
         String hashedPassword = passwordEncoder.encode(signUpRequest.getPassword());
+        Set<Role> roles = new HashSet<>();
+        Optional<Role> userRole = roleRepository.findByName(ROLE_USER);
+        if (userRole.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("role not found");
+        }
+        roles.add(userRole.get());
         User user = new User();
         user.setName(signUpRequest.getUsername());
         user.setEmail(signUpRequest.getEmail());
         user.setPassword(hashedPassword);
+        user.setRoles(roles);
         userRepository.save(user);
         return ResponseEntity.ok("User registered success");
     }
