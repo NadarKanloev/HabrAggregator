@@ -1,7 +1,6 @@
-package com.example.spring_security_tutorial.security;
+package com.example.Habr_Parser_Project.security;
 
-import com.example.spring_security_tutorial.model.User;
-import jdk.jfr.DataAmount;
+import com.example.Habr_Parser_Project.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

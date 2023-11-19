@@ -1,6 +1,6 @@
-package com.example.spring_security_tutorial.controller;
+package com.example.Habr_Parser_Project.controller;
 
-import com.example.spring_security_tutorial.security.UserDetailsImpl;
+import com.example.Habr_Parser_Project.security.UserDetailsImpl;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -42,6 +42,7 @@ public class TestController {
         Authentication authentication = context.getAuthentication();
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         log.info("username : {}", userDetails.getUsername());
+        log.info("role : {}", userDetails.getAuthorities());
         return userDetails;
     }
 }

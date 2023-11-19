@@ -1,7 +1,7 @@
-package com.example.spring_security_tutorial.configuration;
+package com.example.Habr_Parser_Project.configuration;
 
-import com.example.spring_security_tutorial.security.JWTFilter;
-import com.example.spring_security_tutorial.service.UserImplService;
+import com.example.Habr_Parser_Project.security.JWTFilter;
+import com.example.Habr_Parser_Project.service.UserImplService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -18,9 +19,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
+
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfiguration{
 
     private UserImplService userImplService;
@@ -53,7 +55,7 @@ public class SecurityConfiguration{
                         .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
                 )
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/auth/").permitAll()
+                        .requestMatchers("/auth/*").permitAll()
                         .requestMatchers("/secured/user").authenticated()
                         .requestMatchers("/test/**").authenticated()
                         .requestMatchers("/api/test/mod").hasRole("MODERATOR")

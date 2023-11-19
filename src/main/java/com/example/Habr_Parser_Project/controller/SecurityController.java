@@ -1,15 +1,14 @@
-package com.example.spring_security_tutorial.controller;
+package com.example.Habr_Parser_Project.controller;
 
-import com.example.spring_security_tutorial.dto.JwtResponse;
-import com.example.spring_security_tutorial.dto.SignInRequest;
-import com.example.spring_security_tutorial.dto.SignUpRequest;
-import com.example.spring_security_tutorial.model.ERole;
-import com.example.spring_security_tutorial.model.Role;
-import com.example.spring_security_tutorial.model.User;
-import com.example.spring_security_tutorial.repository.RoleRepository;
-import com.example.spring_security_tutorial.repository.UserRepository;
-import com.example.spring_security_tutorial.security.JWTCore;
-import com.example.spring_security_tutorial.security.UserDetailsImpl;
+import com.example.Habr_Parser_Project.dto.JwtResponse;
+import com.example.Habr_Parser_Project.dto.SignInRequest;
+import com.example.Habr_Parser_Project.dto.SignUpRequest;
+import com.example.Habr_Parser_Project.model.Role;
+import com.example.Habr_Parser_Project.model.User;
+import com.example.Habr_Parser_Project.repository.RoleRepository;
+import com.example.Habr_Parser_Project.repository.UserRepository;
+import com.example.Habr_Parser_Project.security.JWTCore;
+import com.example.Habr_Parser_Project.security.UserDetailsImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,7 +27,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.example.spring_security_tutorial.model.ERole.ROLE_USER;
+import static com.example.Habr_Parser_Project.model.ERole.ROLE_USER;
 
 @RestController
 @RequestMapping("/auth")

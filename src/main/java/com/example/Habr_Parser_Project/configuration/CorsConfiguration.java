@@ -1,4 +1,4 @@
-package com.example.spring_security_tutorial.configuration;
+package com.example.Habr_Parser_Project.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,15 +1,12 @@
-package com.example.spring_security_tutorial.service;
+package com.example.Habr_Parser_Project.service;
 
-import com.example.spring_security_tutorial.model.User;
-import com.example.spring_security_tutorial.repository.UserRepository;
-import com.example.spring_security_tutorial.security.UserDetailsImpl;
+import com.example.Habr_Parser_Project.model.User;
+import com.example.Habr_Parser_Project.repository.UserRepository;
+import com.example.Habr_Parser_Project.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.Collections;
 
 @Service
 public class UserImplService implements UserDetailsService {

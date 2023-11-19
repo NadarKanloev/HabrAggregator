@@ -1,4 +1,4 @@
-package com.example.spring_security_tutorial.dto;
+package com.example.Habr_Parser_Project.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

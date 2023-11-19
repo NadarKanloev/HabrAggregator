@@ -1,4 +1,4 @@
-package com.example.spring_security_tutorial.controller;
+package com.example.Habr_Parser_Project.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

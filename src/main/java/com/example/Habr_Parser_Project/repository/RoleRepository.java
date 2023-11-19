@@ -1,7 +1,7 @@
-package com.example.spring_security_tutorial.repository;
+package com.example.Habr_Parser_Project.repository;
 
-import com.example.spring_security_tutorial.model.ERole;
-import com.example.spring_security_tutorial.model.Role;
+import com.example.Habr_Parser_Project.model.ERole;
+import com.example.Habr_Parser_Project.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

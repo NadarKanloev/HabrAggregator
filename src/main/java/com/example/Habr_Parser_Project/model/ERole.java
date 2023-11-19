@@ -1,4 +1,4 @@
-package com.example.spring_security_tutorial.model;
+package com.example.Habr_Parser_Project.model;
 
 public enum ERole {
     ROLE_USER,

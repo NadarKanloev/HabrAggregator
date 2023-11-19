@@ -1,6 +1,6 @@
-package com.example.spring_security_tutorial.security;
+package com.example.Habr_Parser_Project.security;
 
-import com.example.spring_security_tutorial.service.UserImplService;
+import com.example.Habr_Parser_Project.service.UserImplService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
