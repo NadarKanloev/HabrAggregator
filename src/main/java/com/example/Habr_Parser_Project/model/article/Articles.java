@@ -1,6 +1,10 @@
 package com.example.Habr_Parser_Project.model.article;
 
+import com.example.Habr_Parser_Project.model.User;
 import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Table(name = "articles")
 @Entity
@@ -42,7 +46,8 @@ public class Articles {
     @Basic
     @Column(name = "body", nullable = true, length = -1)
     private String body;
-
+    @ManyToMany(mappedBy = "bookmarks")
+    private Set<User> users = new HashSet<>();
     public String getHubId(){
         return hubId;
     }

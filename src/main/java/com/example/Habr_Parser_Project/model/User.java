@@ -1,5 +1,6 @@
 package com.example.Habr_Parser_Project.model;
 
+import com.example.Habr_Parser_Project.model.article.Articles;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,4 +38,11 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_bookmarks",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "article_id")
+    )
+    private Set<Articles> bookmarks = new HashSet<>();
 }

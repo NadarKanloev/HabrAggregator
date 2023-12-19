@@ -42,6 +42,7 @@ public class TestController {
         Authentication authentication = context.getAuthentication();
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         log.info("username : {}", userDetails.getUsername());
+        log.info("id : {}", userDetails.getId());
         log.info("role : {}", userDetails.getAuthorities());
         return userDetails;
     }

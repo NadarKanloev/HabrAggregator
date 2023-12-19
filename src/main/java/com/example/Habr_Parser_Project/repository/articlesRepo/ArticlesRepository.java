@@ -13,4 +13,5 @@ public interface ArticlesRepository extends JpaRepository<Articles, Long> {
     List<Articles> findFirst10ByBodyIsNotNullOrderByPubDatetimeDesc();
     List<Articles> findByauthor(String author);
     List<Articles> findByhubIdAndBodyIsNotNull(String hub_id);
+    boolean existsByarticleId(long articleId);
 }

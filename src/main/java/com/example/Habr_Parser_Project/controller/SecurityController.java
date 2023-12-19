@@ -61,7 +61,7 @@ public class SecurityController {
         res.setId(userDetails.getId());
         res.setUsername(userDetails.getUsername());
         res.setRoles(roles);
-        return ResponseEntity.ok(jwt);
+        return ResponseEntity.ok(res);
     }
 
     @PostMapping("/signup")
