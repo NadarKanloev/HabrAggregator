@@ -62,6 +62,7 @@ public class SecurityConfiguration{
                         .anyRequest().authenticated()
                 );
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+        http.cors();
         return http.build();
     }
 }
