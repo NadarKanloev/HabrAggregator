@@ -18,7 +18,6 @@ public class TestController {
     public String allAccess(){
         return "public content";
     }
-
     @GetMapping("/user")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public String userAccess(){
@@ -34,7 +33,6 @@ public class TestController {
     public String adminAccess(){
         return "Admin Board";
     }
-
     @GetMapping("/profile")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public UserDetailsImpl profile(){

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class UserService {
-
     UserRepository userRepository;
     public long getID() {
         SecurityContext context = SecurityContextHolder.getContext();

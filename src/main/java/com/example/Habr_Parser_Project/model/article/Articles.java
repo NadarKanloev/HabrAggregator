@@ -48,6 +48,10 @@ public class Articles {
     private String body;
     @ManyToMany(mappedBy = "bookmarks")
     private Set<User> users = new HashSet<>();
+    @Basic
+    @Column(name = "article_name")
+    private String articleName;
+
     public String getHubId(){
         return hubId;
     }
@@ -180,5 +184,13 @@ public class Articles {
 
     public void setBody(String body){
         this.body = body;
+    }
+
+    public String getArticleName(){
+        return articleName;
+    }
+
+    public void setArticleName(String articleName){
+        this.articleName = articleName;
     }
 }
